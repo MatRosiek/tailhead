@@ -266,7 +266,6 @@ class Tailer(object):
                 False - collect each line even if it contains only line terminator, when new line could not be fetched then it will work as
                 it would be set to True.
         """
-        trailing = False
         
         while True:
             where = self.file.tell()
