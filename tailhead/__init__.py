@@ -254,14 +254,19 @@ class Tailer(object):
         else:
             return []
 
-    def follow(self):
+    def follow(self, trailing: bool = True):
         """
         Iterator generator that returns lines as data is added to the file.
 
         None will be yielded if no new line is available.
         Caller may either wait and re-try or end iteration.
+
+        Args:
+            trailing(bool): True - consider first encountered line terminator as terminator occurring on the end of the file.
+                False - collect each line even if it contains only line terminator, when new line could not be fetched then it will work as
+                it would be set to True.
         """
-        trailing = True       
+        trailing = False
         
         while True:
             where = self.file.tell()
